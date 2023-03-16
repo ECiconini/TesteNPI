@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/Projetos/Forms/estilo.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+
+    <title>Formulário</title>
+  </head>
+
+  <body>
+    <div class="background">
+      <form id="container">
+        <div class="headerForms">
+          <h1>Formulário</h1>
+          <h1> 🍀</h1>
+        </div>
+        <div class="inputs">
+          <div class="input-box">
+            <label for="name">Nome:</label>
+            <div class="inputField">
+              <i class="fa-solid fa-user"></i>
+
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                minlength="3"
+                autocomplete="off"
+              /><br /><br />
+            </div>
+          <div class="input-box">
+            <label for="age">Idade:</label>
+            <div class="inputField">
+              <i class="fa-solid fa-clipboard"></i>
+              <input
+                type="number"
+                id="age"
+                name="age"
+                required
+                min="1"
+                max="119"
+                autocomplete="off"
+              />
+              <br /><br />
+        </div>
+        <button type="submit" id="submit-btn" disabled>Enviar</button>
+    </div>
+        <div id="message"></div>
+      </form>
+    </div>
+  </body>
+  <script>
+    console.log("teste");
+    const nameInput = document.getElementById("name");
+    const ageInput = document.getElementById("age");
+    const submitBtn = document.getElementById("submit-btn");
+    const messageDiv = document.getElementById("message");
+    function validateForm(event) {
+      event.preventDefault(); // impede o envio do formulário
+      const name = nameInput.value;
+      const age = ageInput.value;
+
+      if (name.length < 3) {
+        messageDiv.textContent = "O nome deve ter pelo menos 3 caracteres";
+        return;
+      }
+
+      if (age <= 0 || age >= 120) {
+        messageDiv.textContent = "A idade deve estar entre 1 e 119";
+        return;
+      }
+
+      messageDiv.textContent = "Formulário enviado com sucesso!";
+    }
+
+    nameInput.addEventListener("input", function () {
+      submitBtn.disabled = !(nameInput.value && ageInput.value);
+    });
+
+    ageInput.addEventListener("input", function () {
+      submitBtn.disabled = !(nameInput.value && ageInput.value);
+    });
+
+    submitBtn.addEventListener("click", validateForm);
+  </script>
+</html>
+<body></body>
